@@ -52,6 +52,14 @@ guakeApp({
   hideOnBlur: true,
 });
 guakeApp({
+  key: "i",
+  modifiers: ["alt"],
+  appName: "iTerm",
+  position: topHalf,
+  followsMouse: true,
+  hideOnBlur: true,
+});
+guakeApp({
   key: "a",
   modifiers: ["alt"],
   appName: "Alacritty",

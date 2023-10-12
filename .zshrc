@@ -1,5 +1,5 @@
 # set -xv
-zmodload zsh/zprof
+# zmodload zsh/zprof
 #
 # set term color
 export TERM="xterm-256color"

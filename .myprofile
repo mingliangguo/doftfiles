@@ -51,6 +51,6 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 
 export PATH="$HOME/.jenv/bin:$HOME/.cargo/bin:$PATH"
 eval "$(jenv init -)"
-alias ls='exa'
-pv
+alias ppv="pv && poetry shell"
+# pv
 

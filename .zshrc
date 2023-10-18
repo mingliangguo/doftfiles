@@ -1,5 +1,7 @@
 # set -xv
+# uncomment the following line and add zprof to the end of the file to profile startup
 # zmodload zsh/zprof
+# zprof
 #
 # set term color
 export TERM="xterm-256color"

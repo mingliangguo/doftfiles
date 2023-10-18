@@ -174,16 +174,18 @@ command -v kubens > /dev/null && alias kns=kubens
 command -v kubectl > /dev/null && alias k=kubectl
 
 command -v byobu > /dev/null && alias bb="byobu"
+command -v exa > /dev/null && alias ls='exa'
+
 
 alias mssql="docker run -it mcr.microsoft.com/mssql-tools"
 
 # Git related alias
 alias git_current_branch="git rev-parse --abbrev-ref HEAD"
-alias grbm2="git fetch upstream && git rebase upstream/master-p2"
+alias grbm="git fetch origin && git rebase origin/master"
 alias gl="git log --graph --abbrev-commit --date-order --format=format:'%Cblue%h%Creset%C(bold red)%d%Creset %s <%an> %Cgreen(%ar)%Creset' --all"
 alias gpo='git push origin $(git_current_branch)'
 alias gpf='git push -f origin $(git_current_branch)'
-alias gpl='git fetch && git pull origin $(git_current_branch)'
+alias gpl='git fetch && git pull origin $(git_current_branch) --rebase'
 
 # update brew
 alias bruu='brew update && brew upgrade && brew cleanup'

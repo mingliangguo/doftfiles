@@ -84,9 +84,9 @@ guakeApp({
   hideOnBlur: false,
 });
 guakeApp({
-  key: "p",
+  key: "z",
   modifiers: ["alt"],
-  appName: "Spotify",
+  appName: "WezTerm",
   position: full,
   followsMouse: true,
   hideOnBlur: false,
@@ -103,8 +103,8 @@ guakeApp({
   key: "c",
   modifiers: ["alt"],
   appName: "Code",
-  position: rightHalf,
-  followsMouse: false,
+  position: full,
+  followsMouse: true,
   hideOnBlur: false,
 });
 

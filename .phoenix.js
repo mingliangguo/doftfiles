@@ -49,7 +49,7 @@ guakeApp({
   appName: "kitty",
   position: topHalf,
   followsMouse: true,
-  hideOnBlur: true,
+  hideOnBlur: false,
 });
 guakeApp({
   key: "i",
@@ -65,7 +65,7 @@ guakeApp({
   appName: "Alacritty",
   position: topHalf,
   followsMouse: true,
-  hideOnBlur: true,
+  hideOnBlur: false,
 });
 guakeApp({
   key: "s",

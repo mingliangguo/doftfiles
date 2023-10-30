@@ -92,6 +92,14 @@ guakeApp({
   hideOnBlur: false,
 });
 guakeApp({
+  key: "v",
+  modifiers: ["alt"],
+  appName: "Vivaldi",
+  position: full,
+  followsMouse: true,
+  hideOnBlur: false,
+});
+guakeApp({
   key: "l",
   modifiers: ["alt"],
   appName: "Logseq",

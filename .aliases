@@ -185,7 +185,7 @@ alias grbm="git fetch origin && git rebase origin/master"
 alias gl="git log --graph --abbrev-commit --date-order --format=format:'%Cblue%h%Creset%C(bold red)%d%Creset %s <%an> %Cgreen(%ar)%Creset' --all"
 alias gpo='git push origin $(git_current_branch)'
 alias gpf='git push -f origin $(git_current_branch)'
-alias gpl='git fetch && git pull origin $(git_current_branch) --rebase'
+alias gfr='git fetch origin && git pull --rebase'
 
 # update brew
 alias bruu='brew update && brew upgrade && brew cleanup'

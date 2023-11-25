@@ -287,6 +287,7 @@ set statusline+=%*
 "
 Plug 'google/vim-jsonnet'
 Plug 'udalov/kotlin-vim'
+Plug 'hashivim/vim-terraform'
 Plug 'elzr/vim-json'
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css']}
 Plug 'isRuslan/vim-es6'

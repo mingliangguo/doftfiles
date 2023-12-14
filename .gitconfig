@@ -122,6 +122,7 @@
   autocrlf = input
   #pager = diff-so-fancy | less --tabs=4 -RFX
   pager = delta
+	hooksPath = /usr/local/gitconfig/hooks/
 
 [interactive]
   diffFilter = delta --color-only

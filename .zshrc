@@ -132,4 +132,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 eval "$(zoxide init zsh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
-eval "$(atuin init zsh)"
+eval "$(atuin init zsh --disable-up-arrow)"

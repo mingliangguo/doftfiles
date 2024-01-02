@@ -1,9 +1,17 @@
+import = [
+    "~/.config/alacritty/themes/themes/afterglow.toml"
+]
+live_config_reload = true
+
 [shell]
 args = ['--login']
 program = "/bin/zsh"
 
 [cursor]
 style = "Beam"
+unfocused_hollow = true
+vi_mode_style = "Block"
+blink_interval = 3
 
 [font]
 size = 16.0
@@ -14,7 +22,7 @@ family = "Fira Code"
 [window]
 startup_mode = "Windowed"
 dynamic_padding = true
-opacity = 1.0
+opacity = 0.90
 
 [window.padding]
 x = 6

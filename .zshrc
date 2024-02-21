@@ -1,7 +1,8 @@
 # set -xv
 # uncomment the following line and add zprof to the end of the file to profile startup
-# zmodload zsh/zprof
-# zprof
+#
+# usage for profiling: ZPROF=1 zsh -i -c exit
+[ -z "$ZPROF" ] || zmodload zsh/zprof
 #
 # set term color
 export TERM="xterm-256color"
@@ -133,3 +134,6 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 eval "$(zoxide init zsh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(atuin init zsh --disable-up-arrow)"
+
+
+[ -z "$ZPROF" ] || zprof

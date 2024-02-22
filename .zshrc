@@ -1,139 +1,121 @@
-# set -xv
-# uncomment the following line and add zprof to the end of the file to profile startup
+# Personal Zsh configuration file. It is strongly recommended to keep all
+# shell customization and configuration (including exported environment
+# variables such as PATH) in this file or in files sourced from it.
 #
-# usage for profiling: ZPROF=1 zsh -i -c exit
-[ -z "$ZPROF" ] || zmodload zsh/zprof
+# Documentation: https://github.com/romkatv/zsh4humans/blob/v5/README.md.
+
+# Periodic auto-update on Zsh startup: 'ask' or 'no'.
+# You can manually run `z4h update` to update everything.
+zstyle ':z4h:' auto-update      'no'
+# Ask whether to auto-update this often; has no effect if auto-update is 'no'.
+zstyle ':z4h:' auto-update-days '28'
+
+# Keyboard type: 'mac' or 'pc'.
+zstyle ':z4h:bindkey' keyboard  'mac'
+
+# Start tmux if not already in tmux.
+# zstyle ':z4h:' start-tmux command tmux -u new -A -D -t z4h
+
+# Whether to move prompt to the bottom when zsh starts and on Ctrl+L.
+zstyle ':z4h:' prompt-at-bottom 'no'
+
+# Mark up shell's output with semantic information.
+zstyle ':z4h:' term-shell-integration 'yes'
+
+# Right-arrow key accepts one character ('partial-accept') from
+# command autosuggestions or the whole thing ('accept')?
+zstyle ':z4h:autosuggestions' forward-char 'accept'
+
+# Recursively traverse directories when TAB-completing files.
+zstyle ':z4h:fzf-complete' recurse-dirs 'no'
+
+# Enable direnv to automatically source .envrc files.
+zstyle ':z4h:direnv'         enable 'yes'
+# Show "loading" and "unloading" notifications from direnv.
+zstyle ':z4h:direnv:success' notify 'yes'
+
+# Enable ('yes') or disable ('no') automatic teleportation of z4h over
+# SSH when connecting to these hosts.
+zstyle ':z4h:ssh:example-hostname1'   enable 'yes'
+zstyle ':z4h:ssh:*.example-hostname2' enable 'no'
+# The default value if none of the overrides above match the hostname.
+zstyle ':z4h:ssh:*'                   enable 'no'
+
+# Send these files over to the remote host when connecting over SSH to the
+# enabled hosts.
+zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
+
+# Clone additional Git repositories from GitHub.
 #
-# set term color
-export TERM="xterm-256color"
+# This doesn't do anything apart from cloning the repository and keeping it
+# up-to-date. Cloned files can be used after `z4h init`. This is just an
+# example. If you don't plan to use Oh My Zsh, delete this line.
+z4h install ohmyzsh/ohmyzsh || return
 
-# You may need to manually set your language environment for python3
-export LC_ALL="en_US.UTF-8"
-export LANG="en_US.UTF-8"
-export LC_CTYPE="en.US.UTF-8"
-export EDITOR=nvim
+# Install or update core components (fzf, zsh-autosuggestions, etc.) and
+# initialize Zsh. After this point console I/O is unavailable until Zsh
+# is fully initialized. Everything that requires user interaction or can
+# perform network I/O must be done above. Everything else is best done below.
+z4h init || return
 
-# unset nomatch otherwise rake task can not take parameters
-unsetopt nomatch
+# Extend PATH.
+path=(~/bin $path)
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Export environment variables.
+export GPG_TTY=$TTY
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Source additional local files if they exist.
+z4h source ~/.env.zsh
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(git vi-mode colored-man colorize github vagrant brew mvn gradle Forklift httpie node npm pip python ruby rvm screen tmux osx zsh-syntax-highlighting)
-
-# source zprezto
+# Use additional Git repositories pulled in with `z4h install`.
 #
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# This is just an example that you should delete. It does nothing useful.
+z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
+z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
 
-ZSH_DISABLE_COMPFIX="true"
+# Define key bindings.
+z4h bindkey undo Ctrl+/   Shift+Tab  # undo the last command line change
+z4h bindkey redo Option+/            # redo the last undone command line change
 
-# why would you type 'cd dir' if you could just type 'dir'?
-setopt AUTO_CD
+z4h bindkey z4h-cd-back    Shift+Left   # cd into the previous directory
+z4h bindkey z4h-cd-forward Shift+Right  # cd into the next directory
+z4h bindkey z4h-cd-up      Shift+Up     # cd into the parent directory
+z4h bindkey z4h-cd-down    Shift+Down   # cd into a child directory
 
-# Now we can pipe to multiple outputs!
-setopt MULTIOS
+# Autoload functions.
+autoload -Uz zmv
 
-# This makes cd=pushd
-setopt AUTO_PUSHD
+# Define functions and completions.
+function md() { [[ $# == 1 ]] && mkdir -p -- "$1" && cd -- "$1" }
+compdef _directories md
 
-# This will use named dirs when possible
-setopt AUTO_NAME_DIRS
+# Define named directories: ~w <=> Windows home directory on WSL.
+[[ -z $z4h_win_home ]] || hash -d w=$z4h_win_home
 
-# If we have a glob this will expand it
-setopt GLOB_COMPLETE
-setopt PUSHD_MINUS
+# Define aliases.
+alias tree='tree -a -I .git'
 
-# No more annoying pushd messages...
-# setopt PUSHD_SILENT
+# Add flags to existing aliases.
+alias ls="${aliases[ls]:-ls} -A"
 
-# blank pushd goes to home
-setopt PUSHD_TO_HOME
-
-# this will ignore multiple directories for the stack.  Useful?  I dunno.
-setopt PUSHD_IGNORE_DUPS
-
-# 10 second wait if you do something that will delete everything.  I wish I'd had this before...
-setopt RM_STAR_WAIT
-
-# use magic (this is default, but it can't hurt!)
-setopt ZLE
-
-setopt NO_HUP
-
-setopt IGNORE_EOF
-
-# If I could disable Ctrl-s completely I would!
-setopt NO_FLOW_CONTROL
-
-# Keep echo "station" > station from clobbering station
-setopt NO_CLOBBER
-
-# Case insensitive globbing
-setopt NO_CASE_GLOB
-
-# Be Reasonable!
-setopt NUMERIC_GLOB_SORT
-
-# I don't know why I never set this before.
-setopt EXTENDED_GLOB
-
-# hows about arrays be awesome?  (that is, frew${cool}frew has frew surrounding all the variables, not just first and last
-setopt RC_EXPAND_PARAM
-
-setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
-setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
-setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
-setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
-setopt EXTENDED_HISTORY  # record command start time
 ###############################################################################
 # Start of my personal config
+###############################################################################
 
-# source ~/.myprofile
+# Set shell options: http://zsh.sourceforge.net/Doc/Release/Options.html.
+#setopt glob_dots     # no special treatment for file names with a leading dot
+#setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
+#setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
+#setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
+#setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+#setopt EXTENDED_HISTORY  # record command start time
 [ -f ~/.myprofile ] && source ~/.myprofile
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+#
+#test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+#
 eval "$(zoxide init zsh)"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(atuin init zsh --disable-up-arrow)"
-
-
-[ -z "$ZPROF" ] || zprof
+#
+#
+#[ -z "$ZPROF" ] || zprofetopt no_auto_menu  # require an extra TAB press to open the completion menu

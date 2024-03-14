@@ -92,6 +92,14 @@ guakeApp({
   hideOnBlur: false,
 });
 guakeApp({
+  key: "p",
+  modifiers: ["alt"],
+  appName: "PyCharm CE",
+  position: full,
+  followsMouse: true,
+  hideOnBlur: false,
+});
+guakeApp({
   key: "v",
   modifiers: ["alt"],
   appName: "Vivaldi",

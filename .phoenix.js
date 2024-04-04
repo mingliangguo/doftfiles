@@ -63,7 +63,7 @@ guakeApp({
   key: "a",
   modifiers: ["alt"],
   appName: "Alacritty",
-  position: topHalf,
+  position: leftHalf,
   followsMouse: true,
   hideOnBlur: false,
 });

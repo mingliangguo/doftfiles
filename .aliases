@@ -257,3 +257,9 @@ conenv() {
   unset __conda_setup
   # <<< conda initialize <<<
 }
+
+uuu() {
+  command -v gcloud > /dev/null && gcloud components update
+  command -v brew > /dev/null && brew update && brew upgrade && brew cleanup
+}
+

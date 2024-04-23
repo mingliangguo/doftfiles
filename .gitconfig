@@ -184,6 +184,7 @@
   followTags = true
 
 # URL shorthands
+# Check this for explanation: https://www.jvt.me/posts/2019/03/20/git-rewrite-url-https-ssh/
 
 [url "git@github.com:"]
 
